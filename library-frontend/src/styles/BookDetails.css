@@ -1,0 +1,192 @@
+.book-details-page {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* Fundo levemente cinza para destacar o conteúdo */
+  display: flex;
+  flex-direction: column;
+}
+
+.details-error-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 20px;
+}
+
+.details-header {
+  background: white;
+  padding: 20px 40px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.details-main-content {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  justify-content: center; /* Centraliza o layout máximo se a tela for gigante */
+}
+
+.details-layout {
+  width: 100%;
+  max-width: 1200px; /* Limite amigável para leitura, sem espremer no meio */
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 60px;
+  background: white;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Lado Esquerdo - Capa */
+.details-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.details-cover-wrapper {
+  width: 100%;
+  aspect-ratio: 2/3;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.details-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.details-no-cover {
+  width: 100%;
+  height: 100%;
+  background: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #94a3b8;
+  gap: 10px;
+}
+
+/* Progresso */
+.details-reading-status {
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.status-text {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #475569;
+}
+
+.progress-bar-large {
+  width: 100%;
+  height: 8px;
+  background: #e2e8f0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar-large .fill {
+  height: 100%;
+  background: #0073B1;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+/* Lado Direito - Infos */
+.details-title {
+  font-size: 42px;
+  color: #0f172a;
+  margin: 0 0 8px 0;
+  line-height: 1.1;
+}
+
+.details-author {
+  font-size: 20px;
+  color: #0073B1;
+  font-weight: 500;
+  margin: 0 0 40px 0;
+}
+
+.details-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.meta-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #f8fafc;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.meta-card label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #64748b;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.meta-card span {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.details-description-box h3 {
+  font-size: 20px;
+  color: #0f172a;
+  border-bottom: 2px solid #f1f5f9;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.details-description-box p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #475569;
+  white-space: pre-wrap; /* Mantém as quebras de linha digitadas no textarea */
+}
+
+/* Botões */
+.btn-edit-top {
+  background: #0073B1;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-edit-top:hover {
+  background: #005a8c;
+}

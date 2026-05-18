@@ -56,23 +56,22 @@
   }
 }
 
+/* MODIFICADO: Mudou de flex para bloco e removeu a centralização restrita */
 #center {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
+  display: block;
+  width: 100%;
   flex-grow: 1;
 
   @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
+    padding: 0;
+    gap: 0;
   }
 }
 
+/* MODIFICADO: Removida a linha de borda do topo */
 #next-steps {
   display: flex;
-  border-top: 1px solid var(--border);
+  border-top: none;
   text-align: left;
 
   & > div {
@@ -95,12 +94,13 @@
   }
 }
 
+/* MODIFICADO: Removida a linha de borda da direita (que gerava a divisão vertical) */
 #docs {
-  border-right: 1px solid var(--border);
+  border-right: none;
 
   @media (max-width: 1024px) {
     border-right: none;
-    border-bottom: 1px solid var(--border);
+    border-bottom: none;
   }
 }
 
@@ -153,17 +153,20 @@
   }
 }
 
+/* MODIFICADO: Removida a linha superior deste bloco */
 #spacer {
   height: 88px;
-  border-top: 1px solid var(--border);
+  border-top: none;
   @media (max-width: 1024px) {
     height: 48px;
   }
 }
 
+/* MODIFICADO: Desativadas as marcações/linhas absolutas que cruzavam as pontas */
 .ticks {
   position: relative;
   width: 100%;
+  display: none;
 
   &::before,
   &::after {
@@ -175,10 +178,19 @@
 
   &::before {
     left: 0;
-    border-left-color: var(--border);
+    border-left-color: transparent;
   }
   &::after {
     right: 0;
-    border-right-color: var(--border);
+    border-right-color: transparent;
   }
+}
+
+/* ADICIONADO NO FIM: Força o HTML e Body a permitirem preenchimento de 100% da viewport */
+html, body, #root, .App {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+  min-height: 100vh !important;
 }

@@ -52,18 +52,30 @@
 
 body {
   margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
+/* MODIFICADO: Agora ocupa 100% da tela, sem margens laterais e sem as linhas verticais */
 #root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  text-align: left; /* Mudado para left para alinhar os textos corretamente na tela toda */
+  border-inline: none !important; /* Sumiu com a linha vertical do canto esquerdo */
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+}
+
+/* Adicionado para garantir que o container do React acompanhe a tela cheia */
+.App {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
 }
 
 h1,
@@ -82,6 +94,7 @@ h1 {
     margin: 20px 0;
   }
 }
+
 h2 {
   font-size: 24px;
   line-height: 118%;
@@ -91,6 +104,7 @@ h2 {
     font-size: 20px;
   }
 }
+
 p {
   margin: 0;
 }
