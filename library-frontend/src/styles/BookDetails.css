@@ -1,7 +1,7 @@
 .book-details-page {
   width: 100%;
   min-height: 100vh;
-  background-color: #f8f9fa; /* Fundo levemente cinza para destacar o conteúdo */
+  background-color: #f8f9fa; 
   display: flex;
   flex-direction: column;
 }
@@ -31,12 +31,12 @@
   flex: 1;
   padding: 40px;
   display: flex;
-  justify-content: center; /* Centraliza o layout máximo se a tela for gigante */
+  justify-content: center; 
 }
 
 .details-layout {
   width: 100%;
-  max-width: 1200px; /* Limite amigável para leitura, sem espremer no meio */
+  max-width: 1200px;
   display: grid;
   grid-template-columns: 320px 1fr;
   gap: 60px;
@@ -169,7 +169,7 @@
   font-size: 16px;
   line-height: 1.8;
   color: #475569;
-  white-space: pre-wrap; /* Mantém as quebras de linha digitadas no textarea */
+  white-space: pre-wrap; 
 }
 
 /* Botões */

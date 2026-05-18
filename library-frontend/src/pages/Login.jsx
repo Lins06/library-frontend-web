@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import '../styles/login.css';
 import { useNavigate, Link } from 'react-router-dom';
+
 import {
   Eye,
   EyeOff,
   Mail,
-  Lock
+  Lock,
+  BookOpen,
 } from 'lucide-react';
 import api from '../services/api';
 
@@ -60,10 +62,10 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        {/* LOGO */}
+  
         <div className="logo-section">
           <div className="logo">
-            <span className="logo-icon">📚</span>
+            <BookOpen size={48} strokeWidth={1.5} color="#2563eb" />
           </div>
           <h1 className="title-gradient">Biblioteca</h1>
           <p>Bem-vindo de volta</p>

@@ -56,7 +56,6 @@
   }
 }
 
-/* MODIFICADO: Mudou de flex para bloco e removeu a centralização restrita */
 #center {
   display: block;
   width: 100%;
@@ -68,7 +67,6 @@
   }
 }
 
-/* MODIFICADO: Removida a linha de borda do topo */
 #next-steps {
   display: flex;
   border-top: none;
@@ -94,7 +92,6 @@
   }
 }
 
-/* MODIFICADO: Removida a linha de borda da direita (que gerava a divisão vertical) */
 #docs {
   border-right: none;
 
@@ -153,7 +150,6 @@
   }
 }
 
-/* MODIFICADO: Removida a linha superior deste bloco */
 #spacer {
   height: 88px;
   border-top: none;
@@ -162,7 +158,6 @@
   }
 }
 
-/* MODIFICADO: Desativadas as marcações/linhas absolutas que cruzavam as pontas */
 .ticks {
   position: relative;
   width: 100%;
@@ -186,7 +181,6 @@
   }
 }
 
-/* ADICIONADO NO FIM: Força o HTML e Body a permitirem preenchimento de 100% da viewport */
 html, body, #root, .App {
   margin: 0 !important;
   padding: 0 !important;

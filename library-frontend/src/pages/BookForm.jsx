@@ -1,11 +1,14 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { ArrowLeft, UploadCloud } from "lucide-react";
 import api from "../services/api";
 import "../styles/bookform.css";
 
 function BookForm() {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const bookToEdit = location.state;
 
   const [formData, setFormData] = useState({
     title: "",
@@ -17,28 +20,38 @@ function BookForm() {
     cover: ""
   });
 
+  useEffect(() => {
+    if (bookToEdit) {
+      setFormData({
+        title: bookToEdit.title,
+        author: bookToEdit.author,
+        genre: bookToEdit.genre,
+        year: bookToEdit.publicationYear.toString(),
+        isbn: bookToEdit.isbn,
+        desc: bookToEdit.description,
+        cover: bookToEdit.coverImageUrl
+      });
+    }
+  }, [bookToEdit]);
+
   async function handleSubmit(e) {
     e.preventDefault();
 
     try {
-      await api.post("/api/books", {
-        title: formData.title,
-        author: formData.author,
-        genre: formData.genre,
-        publicationYear: Number(formData.year),
-        isbn: formData.isbn,
-        description: formData.desc,
-        coverImageUrl: formData.cover
-      });
-
-      alert("Livro cadastrado com sucesso!");
+      if (bookToEdit) {
+        const bookId = bookToEdit._id || bookToEdit.id;
+        await api.put(`/api/books/${bookId}`, bookData);
+        alert("Livro atualizado com sucesso!");
+      } else {
+        await api.post("/api/books", bookData);
+        alert("Livro cadastrado com sucesso!");
+      }
 
       navigate("/dashboard");
 
     } catch (error) {
       console.log(error);
-
-      alert("Erro ao cadastrar livro");
+      alert(bookToEdit ? "Erro ao atualizar livro" : "Erro ao cadastrar livro");
     }
   }
 

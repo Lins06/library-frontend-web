@@ -9,42 +9,68 @@ import {
 import {
   User,
   Mail,
-  Lock
+  Lock,
+  Book,
+  MapPin 
 } from 'lucide-react';
 
 import api from '../services/api';
+import axios from 'axios'; 
 
 const Register = () => {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    cep: '',
+    street: '',
+    city: ''
   });
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleCepChange = async (e) => {
+    const value = e.target.value.replace(/\D/g, ''); // Mantém apenas números
+    
+    setFormData(prev => ({
+      ...prev,
+      cep: value
+    }));
+
+    if (value.length === 8) {
+      try {
+        const response = await axios.get(`https://viacep.com.br/ws/${value}/json/`);
+        
+        if (response.data.erro) {
+          alert('CEP não encontrado!');
+          return;
+        }
+
+        setFormData(prev => ({
+          ...prev,
+          street: response.data.logradouro,
+          city: `${response.data.localidade} - ${response.data.uf}`
+        }));
+      } catch (error) {
+        console.error('Erro ao buscar o CEP:', error);
+      }
+    }
+  };
 
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
-
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      formData.password !==
-      formData.confirmPassword
-    ) {
-
+    if (formData.password !== formData.confirmPassword) {
       alert('Senhas não coincidem');
       return;
     }
@@ -52,33 +78,24 @@ const Register = () => {
     setLoading(true);
 
     try {
-      const response = await api.post(
-        '/api/auth/register',
-        {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-          confirmPassword:
-            formData.confirmPassword
-        }
-      );
+      const response = await api.post('/api/auth/register', {
+        name: formData.name,
+        email: formData.email,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+        cep: formData.cep,
+        street: formData.street,
+        city: formData.city
+      });
 
-      localStorage.setItem(
-        'token',
-        response.data.token
-      );
-
-      localStorage.setItem(
-        'user',
-        JSON.stringify(response.data)
-      );
+      localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', JSON.stringify(response.data));
 
       alert('Conta criada com sucesso!');
       navigate('/dashboard');
 
     } catch (error) {
       console.log(error);
-
       if (error.response?.data?.message) {
         alert(error.response.data.message);
       } else {
@@ -94,40 +111,15 @@ const Register = () => {
       <div className="login-card">
         <div className="logo-section">
           <div className="logo">
-
-            <svg
-              className="logo-svg"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-              />
-            </svg>
-
+            <Book size={48} strokeWidth={1.5} color="#2563eb" />
           </div>
-          <h1 className="title-gradient">
-            Cadastro
-          </h1>
-
-          <p className="subtitle">
-            Crie sua conta
-          </p>
-
+          <h1 className="title-gradient">Cadastro</h1>
+          <p className="subtitle">Crie sua conta</p>
         </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="login-form"
-        >
-
+        <form onSubmit={handleSubmit} className="login-form">
           <div className="input-group-custom">
             <User className="input-icon" />
-
             <input
               type="text"
               name="name"
@@ -137,12 +129,10 @@ const Register = () => {
               className="form-input"
               required
             />
-
           </div>
 
           <div className="input-group-custom">
             <Mail className="input-icon" />
-
             <input
               type="email"
               name="email"
@@ -152,12 +142,30 @@ const Register = () => {
               className="form-input"
               required
             />
-
           </div>
 
           <div className="input-group-custom">
-            <Lock className="input-icon" />
+            <MapPin className="input-icon" />
+            <input
+              type="text"
+              name="cep"
+              maxLength="8"
+              placeholder="Digite seu CEP (apenas números)"
+              value={formData.cep}
+              onChange={handleCepChange} 
+              className="form-input"
+              required
+            />
+          </div>
 
+          {formData.street && (
+            <div style={{ textAlign: 'left', fontSize: '13px', color: '#6b7280', marginBottom: '18px', paddingLeft: '4px' }}>
+              📍 <strong>Endereço localizado:</strong> {formData.street}, {formData.city}
+            </div>
+          )}
+
+          <div className="input-group-custom">
+            <Lock className="input-icon" />
             <input
               type="password"
               name="password"
@@ -167,12 +175,10 @@ const Register = () => {
               className="form-input"
               required
             />
-
           </div>
 
           <div className="input-group-custom">
             <Lock className="input-icon" />
-
             <input
               type="password"
               name="confirmPassword"
@@ -182,33 +188,16 @@ const Register = () => {
               className="form-input"
               required
             />
-
           </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="login-button"
-          >
-
-            {loading
-              ? 'Criando...'
-              : 'Criar Conta'
-            }
-
+          <button type="submit" disabled={loading} className="login-button">
+            {loading ? 'Criando...' : 'Criar Conta'}
           </button>
-
         </form>
 
         <div className="login-footer">
-
           <p>
-            Já possui conta?
-            {' '}
-
-            <Link to="/login">
-              Entrar
-            </Link>
+            Já possui conta? <Link to="/login">Entrar</Link>
           </p>
         </div>
       </div>

@@ -1,12 +1,30 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ArrowLeft, Edit2, Calendar, Hash, Tag, BookOpen } from "lucide-react";
+import { ArrowLeft, Edit2, Trash2, Calendar, Hash, Tag, BookOpen } from "lucide-react";
+import api from "../services/api"; 
 import "../styles/BookDetails.css";
 
 function BookDetails() {
   const location = useLocation();
   const navigate = useNavigate();
   const book = location.state;
+
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(`Tem certeza que deseja excluir o livro "${book.title}"?`);
+    
+    if (confirmDelete) {
+      try {
+        const bookId = book._id || book.id; 
+        
+        await api.delete(`/api/books/${bookId}`);
+        alert("Livro excluído com sucesso!");
+        navigate("/dashboard");
+      } catch (error) {
+        console.error("Erro ao excluir o livro:", error);
+        alert("Erro ao excluir o livro. Tente novamente.");
+      }
+    }
+  };
 
   if (!book) {
     return (
@@ -25,9 +43,16 @@ function BookDetails() {
         <button className="back-btn" onClick={() => navigate("/dashboard")}>
           <ArrowLeft size={20} /> Voltar
         </button>
-        <button className="btn-edit-top" onClick={() => navigate("/book-form", { state: book })}>
-          <Edit2 size={18} /> Editar Informações
-        </button>
+        
+        <div className="details-actions">
+          <button className="btn-edit-top" onClick={() => navigate("/book-form", { state: book })}>
+            <Edit2 size={18} /> Editar Informações
+          </button>
+          
+          <button className="btn-delete-top" onClick={handleDelete}>
+            <Trash2 size={18} /> Excluir Livro
+          </button>
+        </div>
       </header>
 
       <main className="details-main-content">
@@ -53,7 +78,6 @@ function BookDetails() {
             </div>
           </div>
 
-          
           <div className="details-info">
             <h1 className="details-title">{book.title}</h1>
             <p className="details-author">por {book.author}</p>

@@ -12,25 +12,18 @@
 :root {
   --primary: #6366f1;
   --primary-dark: #4f46e5;
-
   --secondary: #8b5cf6;
-
   --background: #f8fafc;
   --card: #ffffff;
-
   --text: #1e293b;
   --text-light: #64748b;
-
   --border: #e2e8f0;
-
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
   --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
-
   --radius-sm: 12px;
   --radius-md: 20px;
   --radius-lg: 32px;
-
   --transition: all 0.3s ease;
 }
 
