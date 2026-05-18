@@ -18,21 +18,14 @@ function Dashboard() {
   useEffect(() => {
 
     async function loadBooks() {
-
       try {
-
         const response = await api.get("/api/books");
-
+        console.log("Dados que vieram do Spring:", response.data);
         setBooks(response.data);
-
       } catch (error) {
-
         console.log("Erro ao buscar livros", error);
-
       } finally {
-
         setLoading(false);
-
       }
     }
 
@@ -150,13 +143,14 @@ function Dashboard() {
 
                 <div className="cover-container">
 
-                  <img
-                    src={
-                      book.cover ||
-                      "https://via.placeholder.com/300x450?text=Livro"
-                    }
+                  <img 
+                    src={book.coverImageUrl || "https://placehold.co/300x450?text=Sem+Foto"} 
                     alt={book.title}
-                  />
+                    onError={(e) => { 
+                        e.target.onerror = null; 
+                        e.target.src = "https://placehold.co/300x450?text=Biblioteca"; 
+                    }} 
+                    />
 
                   <div className="progress-bar-base">
 

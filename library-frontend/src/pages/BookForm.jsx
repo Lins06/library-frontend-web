@@ -28,7 +28,7 @@ function BookForm() {
         publicationYear: Number(formData.year),
         isbn: formData.isbn,
         description: formData.desc,
-        cover: formData.cover
+        coverImageUrl: formData.cover
       });
 
       alert("Livro cadastrado com sucesso!");

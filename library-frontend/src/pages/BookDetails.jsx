@@ -35,8 +35,8 @@ function BookDetails() {
           
           <div className="details-sidebar">
             <div className="details-cover-wrapper">
-              {book.cover ? (
-                <img src={book.cover} alt={book.title} className="details-cover" />
+              {book.coverImageUrl ? (
+                <img src={book.coverImageUrl} alt={book.title} className="details-cover" />
               ) : (
                 <div className="details-no-cover">
                   <BookOpen size={64} color="#ccc" />
@@ -47,11 +47,8 @@ function BookDetails() {
             
             <div className="details-reading-status">
               <div className="status-text">
-                <span>Progresso</span>
-                <strong>{book.progress || 0}%</strong>
-              </div>
-              <div className="progress-bar-large">
-                <div className="fill" style={{ width: `${book.progress || 0}%` }}></div>
+                <span>ISBN</span>
+                <strong>{book.isbn || "---"}</strong>
               </div>
             </div>
           </div>
