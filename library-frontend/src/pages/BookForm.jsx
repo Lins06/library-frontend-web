@@ -38,6 +38,16 @@ function BookForm() {
     e.preventDefault();
 
     try {
+      const bookData = {
+        title: formData.title,
+        author: formData.author,
+        genre: formData.genre,
+        publicationYear: parseInt(formData.year),
+        isbn: formData.isbn,
+        coverImageUrl: formData.cover,
+        description: formData.desc
+      };
+
       if (bookToEdit) {
         const bookId = bookToEdit._id || bookToEdit.id;
         await api.put(`/api/books/${bookId}`, bookData);
