@@ -292,3 +292,150 @@
 .filter-dropdown button:hover {
   background-color: #f1f3f4;
 }
+
+/* MEDIA QUERIES - RESPONSIVO */
+
+/* Tablet (até 1024px) */
+@media (max-width: 1024px) {
+  .kindle-web-layout {
+    flex-direction: column;
+  }
+
+  .k-sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 15px 20px;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    gap: 20px;
+  }
+
+  .sidebar-logo {
+    margin-bottom: 0;
+    min-width: 150px;
+  }
+
+  .sidebar-nav {
+    display: flex;
+    gap: 8px;
+    flex-direction: row;
+  }
+
+  .sidebar-bottom {
+    margin-left: auto;
+  }
+
+  .library-section {
+    padding: 20px 20px;
+  }
+
+  .k-web-header {
+    padding: 12px 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .k-search-container {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 20px;
+  }
+}
+
+/* Mobile (até 768px) */
+@media (max-width: 768px) {
+  .kindle-web-layout {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .k-sidebar {
+    width: 100%;
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    overflow-x: auto;
+  }
+
+  .sidebar-logo {
+    font-size: 14px;
+    min-width: 120px;
+  }
+
+  .nav-item {
+    font-size: 12px;
+    padding: 8px 10px;
+    white-space: nowrap;
+  }
+
+  .sidebar-bottom {
+    margin-left: auto;
+  }
+
+  .k-web-header {
+    padding: 10px 15px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .k-search-container {
+    width: 100%;
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+
+  .library-section {
+    padding: 15px 10px;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 15px;
+  }
+
+  .book-card-kindle {
+    width: auto;
+  }
+
+  .book-info-under .title {
+    font-size: 12px;
+  }
+
+  .book-info-under .author {
+    font-size: 10px;
+  }
+}
+
+/* Extra Small (até 480px) */
+@media (max-width: 480px) {
+  .sidebar-logo {
+    font-size: 12px;
+    gap: 8px;
+  }
+
+  .nav-item {
+    font-size: 11px;
+    padding: 6px 8px;
+  }
+
+  .k-search-container {
+    padding: 5px 8px;
+  }
+
+  .k-search-container input {
+    font-size: 13px;
+  }
+
+  .library-section {
+    padding: 10px 8px;
+  }
+
+  .books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(95px, 1fr));
+    gap: 10px;
+  }
+}

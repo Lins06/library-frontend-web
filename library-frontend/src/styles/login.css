@@ -144,3 +144,114 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* MEDIA QUERIES - RESPONSIVO */
+
+/* Tablet e Mobile */
+@media (max-width: 768px) {
+  .login-container {
+    padding: 15px;
+    min-height: 100vh;
+  }
+
+  .login-card {
+    max-width: 100%;
+    padding: 30px 20px;
+    border-radius: 16px;
+  }
+
+  .logo {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+  }
+
+  .title-gradient {
+    font-size: 32px;
+  }
+
+  .login-card p {
+    font-size: 14px;
+    margin-bottom: 25px;
+  }
+
+  .input-group-custom {
+    padding: 12px 14px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+  }
+
+  .input-group-custom input {
+    font-size: 14px;
+  }
+
+  .input-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  button[type="submit"] {
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 10px;
+  }
+
+  .login-form {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* Mobile Pequeno (até 480px) */
+@media (max-width: 480px) {
+  .login-container {
+    padding: 10px;
+  }
+
+  .login-card {
+    padding: 25px 15px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+  }
+
+  .logo {
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 12px;
+  }
+
+  .title-gradient {
+    font-size: 26px;
+    font-weight: 700;
+  }
+
+  .login-card p {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .input-group-custom {
+    padding: 10px 12px;
+    margin-bottom: 12px;
+    gap: 10px;
+  }
+
+  .input-group-custom input {
+    font-size: 13px;
+  }
+
+  .input-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  button[type="submit"] {
+    padding: 11px;
+    font-size: 14px;
+    margin-top: 8px;
+  }
+
+  a {
+    font-size: 13px;
+  }
+}

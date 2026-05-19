@@ -15,7 +15,6 @@ import {
 } from 'lucide-react';
 
 import api from '../services/api';
-import axios from 'axios'; 
 
 const Register = () => {
   const navigate = useNavigate();
@@ -42,20 +41,22 @@ const Register = () => {
 
     if (value.length === 8) {
       try {
-        const response = await axios.get(`https://viacep.com.br/ws/${value}/json/`);
+        // Chamando o backend em vez de ViaCEP diretamente
+        const response = await api.get(`/api/auth/address/${value}`);
         
-        if (response.data.erro) {
+        if (response.data.error) {
           alert('CEP não encontrado!');
           return;
         }
 
         setFormData(prev => ({
           ...prev,
-          street: response.data.logradouro,
-          city: `${response.data.localidade} - ${response.data.uf}`
+          street: response.data.street,
+          city: `${response.data.city} - ${response.data.state}`
         }));
       } catch (error) {
         console.error('Erro ao buscar o CEP:', error);
+        alert('Erro ao buscar CEP. Tente novamente.');
       }
     }
   };
