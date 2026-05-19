@@ -54,19 +54,6 @@ Uma aplicação web moderna e responsiva para gerenciamento de biblioteca, desen
 - **npm** 8.0.0 ou superior
 - **Backend API** rodando em `http://localhost:8080`
 
-## 🚀 Instalação
-
-### 1. Clonar o repositório
-```bash
-git clone <repository-url>
-cd library-frontend
-```
-
-### 2. Instalar dependências
-```bash
-npm install
-```
-
 ### 3. Configurar URL da API
 
 O arquivo `src/services/api.js` já está configurado para conectar ao backend local:
@@ -250,38 +237,6 @@ BookDetails → Editar/Deletar
 3. Leia a sinopse/descrição
 4. Edite ou delete o livro
 
-## 🐛 Troubleshooting
-
-### Erro de conexão com API
-- ✅ Verifique se o backend está rodando em `http://localhost:8080`
-- ✅ Verifique CORS no backend
-- ✅ Abra DevTools (F12) → Console para ver erros
-
-### Token expirado
-- ✅ Faça login novamente
-- ✅ O token é armazenado no localStorage
-- ✅ Se lipar o localStorage, faça login novamente
-
-### Livros não carregam
-- ✅ Verifique a conexão com API
-- ✅ Verifique se há livros no banco de dados
-- ✅ Verifique logs no console (F12)
-
-### Responsividade não funciona
-- ✅ Pressione F12 → Device Toolbar
-- ✅ Limpe o cache (Ctrl + Shift + Delete)
-- ✅ Recarregue a página (Ctrl + R)
-
-## 📝 Variáveis de Ambiente (Futura Implementação)
-
-Para maior flexibilidade, considere usar um `.env.local`:
-
-```
-VITE_API_BASE_URL=http://localhost:8080
-VITE_APP_NAME=Library Frontend
-VITE_APP_VERSION=1.0.0
-```
-
 ## 🚦 Status do Projeto
 
 | Feature | Status |
@@ -293,18 +248,6 @@ VITE_APP_VERSION=1.0.0
 | Responsividade | ✅ Completo |
 | Autenticação | ✅ Completo |
 | Gerenciamento de Sessão | ✅ Completo |
-
-## 🔄 Melhorias Futuras
-
-- [ ] Dark mode
-- [ ] Paginação de livros
-- [ ] Favoritos/Wishlist
-- [ ] Rating de livros
-- [ ] Comentários
-- [ ] Filtros avançados
-- [ ] Perfil do usuário
-- [ ] Notificações
-- [ ] Upload de imagens
 
 ## 📦 Dependências Principais
 
@@ -319,25 +262,9 @@ VITE_APP_VERSION=1.0.0
 }
 ```
 
-## 👥 Contribuindo
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto é licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
-
 ## 👨‍💻 Autor
 
-**Seu Nome/Equipe**
-
-## 📞 Suporte
-
-Para suporte, abra uma issue no repositório ou entre em contato com a equipe de desenvolvimento.
+**Gabriel Lins Rosa e Maria Eduarda Maklouf**
 
 ## 🙏 Agradecimentos
 
