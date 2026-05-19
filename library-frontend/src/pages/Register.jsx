@@ -32,34 +32,36 @@ const Register = () => {
   const [loading, setLoading] = useState(false);
 
   const handleCepChange = async (e) => {
-    const value = e.target.value.replace(/\D/g, ''); // Mantém apenas números
-    
-    setFormData(prev => ({
-      ...prev,
-      cep: value
-    }));
+  const value = e.target.value.replace(/\D/g, ''); // Mantém apenas números
+  
+  setFormData(prev => ({
+    ...prev,
+    cep: value
+  }));
 
-    if (value.length === 8) {
-      try {
-        // Chamando o backend em vez de ViaCEP diretamente
-        const response = await api.get(`/api/auth/address/${value}`);
-        
-        if (response.data.error) {
-          alert('CEP não encontrado!');
-          return;
-        }
-
-        setFormData(prev => ({
-          ...prev,
-          street: response.data.street,
-          city: `${response.data.city} - ${response.data.state}`
-        }));
-      } catch (error) {
-        console.error('Erro ao buscar o CEP:', error);
-        alert('Erro ao buscar CEP. Tente novamente.');
+  if (value.length === 8) {
+    try {
+      // Chamando o backend em vez de ViaCEP diretamente
+      const response = await api.get(`/api/auth/address/${value}`);
+      
+      // 1. CORREÇÃO: Mudar de .error para .erro
+      if (response.data.erro) { 
+        alert('CEP não encontrado!');
+        return;
       }
+
+      // 2. CORREÇÃO: Mudar para as chaves em português que o backend envia
+      setFormData(prev => ({
+        ...prev,
+        street: response.data.logradouro, // antes: response.data.street
+        city: `${response.data.localidade} - ${response.data.uf}` // antes: response.data.city e .state
+      }));
+    } catch (error) {
+      console.error('Erro ao buscar o CEP:', error);
+      alert('Erro ao buscar CEP. Tente novamente.');
     }
-  };
+  }
+};
 
   const handleChange = (e) => {
     setFormData({
